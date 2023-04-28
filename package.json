@@ -1,0 +1,15 @@
+{
+  "name": "entregable-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Luis V",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
