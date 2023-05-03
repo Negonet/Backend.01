@@ -1,4 +1,5 @@
 const fs = require('fs')
+
 class ProductManager {
 
     constructor(){
@@ -39,14 +40,15 @@ class ProductManager {
         }
         }
 
-    getProducts = async (id) => {
+    getProducts = async () => {
 
         try {
 
             let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
-            console.log(this.products)
+            return this.products
+            //console.log(this.products)
 
         }catch (err) {
             console.log(err)
@@ -130,13 +132,14 @@ class ProductManager {
     }
 }
 
+module.exports = ProductManager
 
 //updateProduct(1,69)
 
 //Agregar Item:
-const productos = new ProductManager()
-productos.addProduct('cubiertos','plastico',8,'no existente',50,50);
-productos.addProduct('wok','aluminio',47,'no existente',37,50);
+// const productos = new ProductManager()
+// productos.addProduct('cubiertos','plastico',8,'no existente',50,50);
+// productos.addProduct('wok','aluminio',47,'no existente',37,50);
 //productos.addProduct('sarten','aluminio',29,'no existente',23,25);
 //productos.getProducts()
 
