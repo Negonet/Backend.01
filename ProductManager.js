@@ -6,28 +6,26 @@ class ProductManager {
         this.products = [];
         this.id = 0;
     }
-//let products = [];
-//let id = 0;
 
-
-    addProduct = async (title, description, price, thumbnail, code, stock) => {
+    async addProduct (title, description, price, thumbnail, code, stock) {
 
         try {
-            console.log(this.products)
+            
             let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             
             this.products = arrayProduct
-            //console.log(this.products[1].id)
-            const search = this.products.find(products => products.code === code)
-            console.log(search)
+            
+            const search = this.products.find(product => {
+                return product.code == code})
+            
 
             if (!search) {
                 const newProduct = {title, description, price, thumbnail, code, stock};
 
                 newProduct.id = ++this.id
                 this.products.push(newProduct)
-                console.log(this.products)
+                
 
             
                let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
@@ -48,7 +46,7 @@ class ProductManager {
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
             return this.products
-            //console.log(this.products)
+            
 
         }catch (err) {
             console.log(err)
@@ -79,28 +77,27 @@ class ProductManager {
         } 
     }
 
-    getProductById = async (id) => {
-        try {
+    async getProductById(id) {
+        
             let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
-            const searchId = this.products.findIndex(product => product.id === id.id)
+            const searchId = this.products.find(product => {
+                return product.id == id
+            }) 
             
             
             if (searchId) {
-                
-                const getProduct = this.products.slice(searchId, searchId+1)
-                console.log(getProduct)
+                               
+                return searchId
             
             }
             else{
-                console.log('no se encuentra el producto')
+                return 'no se encuentra el producto'
             }
         
-        }catch(err) {
-            console.log(err)
         }
-    }
+    
 
     updateProduct = async (id) => {
         try {
@@ -117,7 +114,7 @@ class ProductManager {
                     if (product.id == id.id) {
                         product.stock=id.stock
                         console.log(this.products)
-                        //let writeProduct = fs.writeFile('./productos.json' ,JSON.stringify(arrayProduct, null, 2), 'utf-8')
+                       
                         }
 
                 } )} 

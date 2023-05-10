@@ -52,5 +52,17 @@
     "code": 50,
     "stock": 50,
     "id": 1
+  },
+  {
+    "title": {
+      "title": "taza",
+      "description": "blanca",
+      "price": 12,
+      "thumbnail": "no existente",
+      "code": 29,
+      "stock": 10,
+      "id": 1
+    },
+    "id": 1
   }
 ]
