@@ -45,6 +45,7 @@ app.get('/products/:pid', (req, res) => {
 app.post('/addproduct', (req, res)=> {
    
     let newProduct = req.body
+    console.log(newProduct)
     let product = new ProductManager()
     const resp = product.addProduct(newProduct)
     resp.then(pr => {
@@ -54,6 +55,23 @@ app.post('/addproduct', (req, res)=> {
         console.log(err)
     })
 })
+
+app.put('/update', (req, res) => {
+    
+    let updateProd = req.body
+    
+    let products = new ProductManager()
+    const resp = products.updateProduct(updateProd)
+    
+    resp.then(pr => {
+        
+        res.send(pr)
+
+    }).catch(err => {
+        console.log(err)
+    })   
+})
+
 
 app.listen(PORT, () => {
     console.log('corriendo en el puerto', PORT)

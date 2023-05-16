@@ -7,7 +7,7 @@ class ProductManager {
         this.id = 0;
     }
 
-    async addProduct (title, description, price, thumbnail, code, stock) {
+    async addProduct (newProduct) {
 
         try {
             
@@ -15,19 +15,16 @@ class ProductManager {
             let arrayProduct = JSON.parse(readProducts)
             
             this.products = arrayProduct
+
             
             const search = this.products.find(product => {
-                return product.code == code})
-            
+                return product.code == newProduct.code})
 
             if (!search) {
-                const newProduct = {title, description, price, thumbnail, code, stock};
-
-                newProduct.id = ++this.id
-                this.products.push(newProduct)
-                
-
-            
+                const id = ++this.id
+                const productAdded = {...newProduct, id};
+                this.products.push(productAdded)
+           
                let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
             }     else {
                 console.log('este item ya existe')
@@ -99,20 +96,20 @@ class ProductManager {
         }
     
 
-    updateProduct = async (id) => {
+    updateProduct = async (updateProd) => {
         try {
             let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
 
-            const searchId = this.products.findIndex((product => product.id === id.id))
-
+            const searchId = this.products.findIndex((product => product.id === updateProd.id))
+            console.log(searchId)
             if ( searchId >= 0 ) {
 
                 const update = arrayProduct.map(product => {
 
-                    if (product.id == id.id) {
-                        product.stock=id.stock
+                    if (product.id == updateProd.id) {
+                        product.stock=updateProd.stock
                         console.log(this.products)
                        
                         }
