@@ -110,15 +110,6 @@ class ProductManager {
                 console.log(this.products[searchId])
                 let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
 
-                //const update = this.products.map(product => {
-
-                    // if (product.id == updateProd.id) {
-                    //     product.stock=updateProd.stock
-                    //     console.log(product.stock)
-                       
-                    //     }
-
-                //} )
             } 
                 
                 else{

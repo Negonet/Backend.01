@@ -42,7 +42,7 @@ app.get('/products/:pid', (req, res) => {
 })
 
 
-app.post('/addproduct', (req, res)=> {
+app.post('/products/addproduct', (req, res)=> {
    
     let newProduct = req.body
     console.log(newProduct)
@@ -56,12 +56,28 @@ app.post('/addproduct', (req, res)=> {
     })
 })
 
-app.put('/update', (req, res) => {
+app.put('/products/update', (req, res) => {
     
     let updateProd = req.body
     
     let products = new ProductManager()
     const resp = products.updateProduct(updateProd)
+    
+    resp.then(pr => {
+        
+        res.send(pr)
+
+    }).catch(err => {
+        console.log(err)
+    })   
+})
+
+app.delete('/products/delete', (req, res) => {
+    
+    let deleteProd = req.body
+    
+    let products = new ProductManager()
+    const resp = products.deleteProduct(deleteProd)
     
     resp.then(pr => {
         
