@@ -106,15 +106,20 @@ class ProductManager {
             console.log(searchId)
             if ( searchId >= 0 ) {
 
-                const update = arrayProduct.map(product => {
+                this.products[searchId].stock = updateProd.stock;
+                console.log(this.products[searchId])
+                let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
 
-                    if (product.id == updateProd.id) {
-                        product.stock=updateProd.stock
-                        console.log(this.products)
+                //const update = this.products.map(product => {
+
+                    // if (product.id == updateProd.id) {
+                    //     product.stock=updateProd.stock
+                    //     console.log(product.stock)
                        
-                        }
+                    //     }
 
-                } )} 
+                //} )
+            } 
                 
                 else{
                 console.log('no se encuentra el producto')
