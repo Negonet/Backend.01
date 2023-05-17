@@ -13,7 +13,7 @@ router.get('/all', (req, res) => {
     const resp = products.getProducts()
     resp.then(pr => {
         
-        res.send(pr)
+        res.render('index', pr)
     }).catch(err => {
         console.log(err)
     })
