@@ -103,11 +103,10 @@ class ProductManager {
             this.products = arrayProduct
 
             const searchId = this.products.findIndex((product => product.id === updateProd.id))
-            console.log(searchId)
+            
             if ( searchId >= 0 ) {
 
                 this.products[searchId].stock = updateProd.stock;
-                console.log(this.products[searchId])
                 let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
 
             } 
@@ -123,21 +122,3 @@ class ProductManager {
 }
 
 module.exports = ProductManager
-
-//updateProduct(1,69)
-
-//Agregar Item:
-// const productos = new ProductManager()
-// productos.addProduct('cubiertos','plastico',8,'no existente',50,50);
-// productos.addProduct('wok','aluminio',47,'no existente',37,50);
-//productos.addProduct('sarten','aluminio',29,'no existente',23,25);
-//productos.getProducts()
-
-//Obtener productos:
-//getProducts()
-
-//Borrar producto por su Id:
-//deleteProduct(1)
-
-//Buscar producto por su Id:
-//getProductById(2)
