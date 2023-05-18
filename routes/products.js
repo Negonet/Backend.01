@@ -13,7 +13,9 @@ router.get('/all', (req, res) => {
     const resp = products.getProducts()
     resp.then(pr => {
         
-        res.render('index', pr)
+        res.send(pr)
+        console.log(resp)
+
     }).catch(err => {
         console.log(err)
     })
@@ -28,9 +30,10 @@ router.get('/:pid', (req, res) => {
     let products = new ProductManager()
     const resp = products.getProductById(id)
     
+    
     resp.then(pr => {
-        
-        res.send(pr)
+        console.log(resp)
+        res.render('index', pr)
 
     }).catch(err => {
         console.log(err)
