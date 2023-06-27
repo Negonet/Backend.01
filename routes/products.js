@@ -1,7 +1,7 @@
 const express = require ('express')
 
 const path = require('path')
-const ProductManager = require('../ProductManager')
+const ProductManager = require('../controllers/ProductManager')
 const { Router } = express
 
 

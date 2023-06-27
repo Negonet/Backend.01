@@ -7,11 +7,11 @@ class ProductManager {
         this.id = 0;
     }
 
-    async addProduct (newProduct) {
+        async addProduct (newProduct) {
 
         try {
             
-            let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
+            let readProducts = await fs.promises.readFile('./models/productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             
             this.products = arrayProduct
@@ -25,7 +25,7 @@ class ProductManager {
                 const productAdded = {...newProduct, id};
                 this.products.push(productAdded)
            
-               let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
+               let writeProduct = await fs.promises.writeFile('./models/productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
             }     else {
                 console.log('este item ya existe')
             }  
@@ -39,7 +39,7 @@ class ProductManager {
 
         try {
 
-            let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
+            let readProducts = await fs.promises.readFile('./models/productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
             return this.products
@@ -53,7 +53,7 @@ class ProductManager {
 
     deleteProduct = async (id) => {
         try {
-            let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
+            let readProducts = await fs.promises.readFile('./models/productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
 
@@ -62,7 +62,7 @@ class ProductManager {
             if (searchId !== -1) {
                 
                 this.products.splice(searchId, 1)
-                let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
+                let writeProduct = await fs.promises.writeFile('./models/productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
                 
             }
             else{
@@ -76,7 +76,7 @@ class ProductManager {
 
     async getProductById(id) {
         
-            let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
+            let readProducts = await fs.promises.readFile('./models/productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
             const searchId = this.products.find(product => {
@@ -98,7 +98,7 @@ class ProductManager {
 
     updateProduct = async (updateProd) => {
         try {
-            let readProducts = await fs.promises.readFile('./productos.json', 'utf-8')
+            let readProducts = await fs.promises.readFile('./models/productos.json', 'utf-8')
             let arrayProduct = JSON.parse(readProducts)
             this.products = arrayProduct
 
@@ -107,7 +107,7 @@ class ProductManager {
             if ( searchId >= 0 ) {
 
                 this.products[searchId].stock = updateProd.stock;
-                let writeProduct = await fs.promises.writeFile('./productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
+                let writeProduct = await fs.promises.writeFile('./models/productos.json' ,JSON.stringify(this.products, null, 2), 'utf-8')
 
             } 
                 

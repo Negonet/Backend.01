@@ -8,6 +8,7 @@ const routesProducts = require('./routes/products')
 const routesCart = require('./routes/cart')
 
 app.use('/products', routesProducts)
+app.use('/cart', routesCart)
 
 app.use(express.json())
 app.engine('handlebars', handlebars.engine())
