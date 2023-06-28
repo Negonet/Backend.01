@@ -1,1 +1,1 @@
-console.log('hola mundo soy el cliente')
+let socket = io()
