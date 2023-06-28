@@ -9,7 +9,7 @@ const routesCart = require('./routes/cart')
 
 app.use('/products', routesProducts)
 app.use('/cart', routesCart)
-
+app.use(express.static(__dirname+'/public'))
 app.use(express.json())
 app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname+'/views')
