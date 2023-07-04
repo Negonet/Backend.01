@@ -26,7 +26,7 @@ io.on('connection', (socket)=> {
     
     socket.on('newId', (data)=>{
         socket.emit('newid', data)
-        //console.log(data)
+        console.log(data)
     })
 
 })

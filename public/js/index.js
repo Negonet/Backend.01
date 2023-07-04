@@ -1,10 +1,12 @@
 let socket = io()
+let getData = null
 
 socket.on('message', (data)=>{
     console.log(data)
-
+    getData = data
     socket.emit('msg', 'Hola back soy front')
 })
+
 
 
 function searchId(e){
@@ -12,6 +14,6 @@ function searchId(e){
         id: document.getElementById('idsearch').value
     }
     console.log(id)
-    socket.emit('ned', id)
+    socket.emit('newId', id)
     return false
 }

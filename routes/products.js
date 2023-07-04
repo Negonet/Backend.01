@@ -4,6 +4,7 @@ const ProductManager = require('../controllers/ProductManager');
 const { Router } = express
 
 
+
 const router = new Router ()
 
 router.get('/all', (req, res) => {
