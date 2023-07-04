@@ -23,6 +23,12 @@ app.set('view engine', 'handlebars')
 
 io.on('connection', (socket)=> {
     console.log('User conectado')
+    
+    socket.on('newId', (data)=>{
+        socket.emit('newid', data)
+        //console.log(data)
+    })
+
 })
 
 app.get('/', (req, res) => {
